@@ -1,0 +1,58 @@
+import arcade
+
+
+WIDTH = 640
+HEIGHT = 480
+
+current_screen = "main menu"
+
+
+def setup():
+    arcade.open_window(WIDTH, HEIGHT, "My Arcade Game")
+    arcade.set_background_color(arcade.color.WHITE)
+    arcade.schedule(update, 1/60)
+
+    # Override arcade window methods
+    window = arcade.get_window()
+    window.on_draw = on_draw
+    window.on_key_press = on_key_press
+    window.on_key_release = on_key_release
+    window.on_mouse_press = on_mouse_press
+
+    arcade.run()
+
+
+def update(delta_time):
+    pass
+
+
+def on_draw():
+    arcade.start_render()
+    x = 180
+    y = 325
+    if current_screen == "main menu":
+        arcade.set_background_color(arcade.color.GRAY)
+        arcade.draw_text("ESCAPE", x, y, arcade.color.RED_DEVIL, 50, 10, "center", 'Veneer', True, False,)
+        arcade.draw_text("to the", x + 40, y - 35, arcade.color.BLACK, 25, 200, "center", "veneer", False, False,)
+        arcade.draw_text("FUTURE", x + 25, y - 90, arcade.color.WHITE, 40, 10, "center", "Veneer", True, False,)
+        arcade.draw_rectangle_filled(WIDTH/2, 175, 200, 50, arcade.color.LIGHT_GRAY)
+        arcade.draw_rectangle_filled(WIDTH/2, 100, 200, 50, arcade.color.LIGHT_GRAY)
+        arcade.draw_text("PLAY GAME", 225, 165, arcade.color.BLACK, 25, 200)
+        arcade.draw_text("INSTRUCTIONS", 225, 90, arcade.color.BLACK, 19, 200)
+
+
+def on_key_press(key, modifiers):
+    pass
+
+
+def on_key_release(key, modifiers):
+    pass
+
+
+def on_mouse_press(x, y, button, modifiers):
+    if current_screen == "main menu":
+        if x > 220 and x < 420 and y > 150 and y < 200:
+            print ("button is clicked")
+
+if __name__ == '__main__':
+    setup()
