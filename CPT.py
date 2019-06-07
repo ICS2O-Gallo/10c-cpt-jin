@@ -1,5 +1,4 @@
 import arcade
-import os
 
 
 WIDTH = 640
@@ -7,6 +6,9 @@ HEIGHT = 480
 
 current_screen = "main menu"
 
+button_clicked = False
+
+inventory = []
 
 def setup():
     arcade.open_window(WIDTH, HEIGHT, "My Arcade Game")
@@ -29,6 +31,7 @@ def update(delta_time):
 
 def on_draw():
     arcade.start_render()
+    global button_clicked
 
     if current_screen == "main menu":
         draw_mainmenu(180, 325)
@@ -36,10 +39,17 @@ def on_draw():
         draw_instruction()
     elif current_screen == "pause screen":
         draw_pausescreen()
+        button_clicked = False
     elif current_screen == "room 1":
-        draw_room1(430)
+        draw_room1()
+        button_clicked = True
     if current_screen == "book":
         draw_book()
+    if button_clicked == True:
+        draw_sidebar(430)
+
+    if inventory is "slip":
+        arcade.draw_rectangle_filled(570, 430, 50, 100, arcade.color.BEIGE)
 
 
 def on_key_press(key, modifiers):
@@ -47,7 +57,7 @@ def on_key_press(key, modifiers):
     if current_screen == "instructions":
         if key == arcade.key.ESCAPE:
             current_screen = "main menu"
-    if current_screen == "room 1":
+    if button_clicked == True:
         if key == arcade.key.ESCAPE:
             current_screen = "pause screen"
 
@@ -58,9 +68,11 @@ def on_key_release(key, modifiers):
 
 def on_mouse_press(x, y, button, modifiers):
     global current_screen
+    global button_clicked
     if current_screen == "main menu":
         if x > 220 and x < 420 and y > 150 and y < 200:
             current_screen = "room 1"
+            button_clicked = True
         if x > 220 and x < 420 and y > 75 and y < 125:
             current_screen = "instructions"
     if current_screen == "pause screen":
@@ -71,6 +83,13 @@ def on_mouse_press(x, y, button, modifiers):
     if current_screen == "room 1":
         if x > 75 and x < 125 and y > 200 and y < 220:
             current_screen = "book"
+    if current_screen == "book":
+        if x > 0 and x < WIDTH - 145 and y > 0 and y < 30:
+            current_screen = "room 1"
+        if x > 12 and x < 50 and y > 12 and y < 59:
+            inventory.append("slip")
+            print("paper")
+
 
 def draw_instruction():
     arcade.set_background_color(arcade.color.BLACK)
@@ -83,6 +102,7 @@ def draw_instruction():
     mouse.center_x = 450
     mouse.center_y = 200
     mouse.draw()
+
 
 def draw_mainmenu(x, y):
     arcade.set_background_color(arcade.color.GRAY)
@@ -104,13 +124,9 @@ def draw_pausescreen():
     arcade.draw_text("RESUME", 385, 165, arcade.color.BLACK, 25, 200)
 
 
-def draw_room1(whitesquare_x):
+def draw_room1():
     arcade.set_background_color(arcade.color.DARK_GRAY)
     arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
-    arcade.draw_rectangle_filled(570, HEIGHT / 2, 145, HEIGHT, arcade.color.BLACK)
-    for _ in range(5):
-        arcade.draw_rectangle_filled(570, whitesquare_x, 80, 80, arcade.color.WHITE)
-        whitesquare_x -= 95
     arcade.draw_rectangle_filled(260, 155, 75, 150, arcade.color.BROWN)
     arcade.draw_circle_filled(235, 150, 7, arcade.color.GOLD)
     arcade.draw_rectangle_filled(100, 230, 150, 300, arcade.color.LIGHT_BROWN)
@@ -123,7 +139,17 @@ def draw_room1(whitesquare_x):
 
 
 def draw_book():
-    arcade.draw_rectangle_filled(WIDTH/2 - 145, HEIGHT/2, WIDTH - 145, HEIGHT, arcade.color.LIGHT_BROWN)
+    arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT, arcade.color.LIGHT_BROWN)
+    arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT - 50, arcade.color.DARK_BROWN)
+    arcade.draw_rectangle_filled(250, 59, 400, 67, arcade.color.RED)
+    arcade.draw_line(50, 59, 12, 40, arcade.color.WHITE, 2)
+
+
+def draw_sidebar(whitesquare_y):
+    arcade.draw_rectangle_filled(570, HEIGHT / 2, 145, HEIGHT, arcade.color.BLACK)
+    for _ in range(5):
+        arcade.draw_rectangle_filled(570, whitesquare_y, 80, 80, arcade.color.WHITE)
+        whitesquare_y -= 95
 
 
 if __name__ == '__main__':
