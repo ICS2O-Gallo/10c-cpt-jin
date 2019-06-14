@@ -40,16 +40,21 @@ def on_draw():
         draw_mainmenu(180, 325)
     elif current_screen == "instructions":
         draw_instruction()
-    elif current_screen == "pause screen":
-        draw_pausescreen()
+    elif current_screen == "pause screen1":
+        draw_pausescreen1()
         game = False
-    elif current_screen == "room 1":
-        draw_room1()
+    elif current_screen == "pause screen2":
+        draw_pausescreen1()
+        game = False
+    elif current_screen == "room":
+        draw_room()
         game = True
     if current_screen == "book":
         draw_book()
     if game is True:
         draw_sidebar(430)
+    if current_screen == "locked box":
+        draw_lockedbox()
     if current_screen == "paper":
         draw_paper()
 
@@ -59,9 +64,12 @@ def on_key_press(key, modifiers):
     if current_screen == "instructions":
         if key == arcade.key.ESCAPE:
             current_screen = "main menu"
-    if game == True:
+    if game == True and current_screen == "room":
         if key == arcade.key.ESCAPE:
-            current_screen = "pause screen"
+            current_screen = "pause screen1"
+    if game == True and current_screen == "book":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen2"
 
 
 def on_key_release(key, modifiers):
@@ -74,28 +82,41 @@ def on_mouse_press(x, y, button, modifiers):
     global paper_in_inventory
     if current_screen == "main menu":
         if x > 220 and x < 420 and y > 150 and y < 200:
-            current_screen = "room 1"
+            current_screen = "room"
             game = True
         if x > 220 and x < 420 and y > 75 and y < 125:
             current_screen = "instructions"
-    if current_screen == "pause screen":
+    if current_screen == "pause screen1":
         if x > 100 and x < 300 and y > 150 and y < 200:
             current_screen = "main menu"
         if x > 350 and x < 550 and y > 150 and y < 200:
-            current_screen = "room 1"
-    if current_screen == "room 1":
+            current_screen = "room"
+    if current_screen == "pause screen2":
+        if x > 100 and x < 300 and y > 150 and y < 200:
+            current_screen = "main menu"
+        if x > 350 and x < 550 and y > 150 and y < 200:
+            current_screen = "book"
+            game = True
+    if current_screen == "room":
         if x > 75 and x < 125 and y > 200 and y < 220:
             current_screen = "book"
+            game = True
+        if x > 380 and x < 440 and y > 170 and y < 200:
+            current_screen = "locked box"
+            game = True
     if current_screen == "book":
         if x > 12 and x < 50 and y > 12 and y < 59:
             inventory.append("slip")
             paper_in_inventory = True
         if x > 20 and x < 120 and y > 380 and y < 450:
-            current_screen = "room 1"
+            current_screen = "room"
+    if current_screen == "locked box":
+        if x > 20 and x < 120 and y > 380 and y < 450:
+            current_screen = "room"
     if game == True and paper_in_inventory == True:
         if x > 545 and x < 605 and y > 395 and y < 465:
             current_screen = "paper"
-    if current_screen
+
 
 def draw_instruction():
     arcade.set_background_color(arcade.color.BLACK)
@@ -117,7 +138,7 @@ def draw_mainmenu(x, y):
     arcade.draw_text("INSTRUCTIONS", 225, 90, arcade.color.BLACK, 19, 900)
 
 
-def draw_pausescreen():
+def draw_pausescreen1():
     arcade.draw_rectangle_filled(WIDTH/2, HEIGHT/2, WIDTH, HEIGHT, arcade.color.BLACK)
     arcade.draw_text("QUIT GAME?", 77, HEIGHT / 2, arcade.color.WHITE, 50, 500, "center", "Arial", True)
     arcade.draw_rectangle_filled(200, 175, 200, 50, arcade.color.WHITE)
@@ -126,7 +147,15 @@ def draw_pausescreen():
     arcade.draw_text("RESUME", 385, 165, arcade.color.BLACK, 25, 500)
 
 
-def draw_room1():
+def draw_pausescreen2():
+    arcade.draw_rectangle_filled(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, arcade.color.BLACK)
+    arcade.draw_text("QUIT GAME?", 77, HEIGHT / 2, arcade.color.WHITE, 50, 500, "center", "Arial", True)
+    arcade.draw_rectangle_filled(200, 175, 200, 50, arcade.color.WHITE)
+    arcade.draw_rectangle_filled(450, 175, 200, 50, arcade.color.WHITE)
+    arcade.draw_text("QUIT", 155, 165, arcade.color.BLACK, 25, 300)
+    arcade.draw_text("RESUME", 385, 165, arcade.color.BLACK, 25, 500)
+
+def draw_room():
     arcade.set_background_color(arcade.color.DARK_GRAY)
     arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
     arcade.draw_rectangle_filled(260, 155, 75, 150, arcade.color.BROWN)
@@ -138,6 +167,12 @@ def draw_room1():
     arcade.draw_rectangle_filled(100, 170, 125, 50, arcade.color.DARK_BROWN)
     arcade.draw_rectangle_filled(100, 110, 125, 50, arcade.color.DARK_BROWN)
     arcade.draw_rectangle_filled(100, 210, 50, 10, arcade.color.RED)
+    arcade.draw_rectangle_filled(410, 165, 125, 10, arcade.color.LIGHT_BROWN)
+    arcade.draw_rectangle_filled(370, 120, 10, 80, arcade.color.LIGHT_BROWN)
+    arcade.draw_rectangle_filled(450, 120, 10, 80, arcade.color.LIGHT_BROWN)
+    arcade.draw_rectangle_filled(410, 185, 60, 30, arcade.color.MAROON)
+    arcade.draw_line(380, 185, 440, 185, arcade.color.BLACK)
+    arcade.draw_rectangle_filled(410, 185, 5, 10, arcade.color.GOLD)
 
 
 def draw_book():
@@ -145,6 +180,14 @@ def draw_book():
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT - 50, arcade.color.DARK_BROWN)
     arcade.draw_rectangle_filled(250, 59, 400, 67, arcade.color.RED)
     arcade.draw_line(50, 59, 12, 40, arcade.color.WHITE, 2)
+    draw_arrow(arcade.color.RED)
+
+
+def draw_lockedbox():
+    arcade.draw_rectangle_filled(WIDTH/2 - 70, 40, WIDTH - 145, 80, arcade.color.LIGHT_BROWN)
+    arcade.draw_rectangle_filled(WIDTH/2 - 70, 170, 360, 180, arcade.color.MAROON)
+    arcade.draw_line(70, 170, 430, 170, arcade.color.BLACK)
+    arcade.draw_rectangle_filled(WIDTH/2 - 70, 170, 30, 60, arcade.color.GOLD)
     draw_arrow(arcade.color.RED)
 
 
@@ -168,7 +211,6 @@ def draw_paper():
 def draw_arrow(color):
     arcade.draw_rectangle_filled(70, 435, 70, 30, color)
     arcade.draw_triangle_filled(15, 435, 60, 470, 60, 400, color)
-
 
 if __name__ == '__main__':
     setup()
