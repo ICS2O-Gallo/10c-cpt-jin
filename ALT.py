@@ -1,7 +1,20 @@
 import arcade
 
+
+#Window Dimmensions
 WIDTH = 640
 HEIGHT = 480
+
+#BUTTON CODE
+BTN_X = 0
+BTN_Y = 1
+BTN_WIDTH = 2
+BTN_HEIGHT = 3
+
+start_button = [220, 150, 200, 50]
+instructions_button = [220, 75, 200, 50]
+quit_button = [100, 150, 200, 50]
+resume_button = [350, 150, 200, 50]
 
 current_screen = "main menu"
 
@@ -106,70 +119,137 @@ def on_mouse_press(x, y, button, modifiers):
     global game
     global paper_in_inventory
     if current_screen == "main menu":
-        if x > 220 and x < 420 and y > 150 and y < 200:
+        if x > start_button[BTN_X] \
+                and x <start_button[BTN_X] + start_button[BTN_WIDTH] \
+                and y > start_button[BTN_Y] \
+                and y < start_button[BTN_Y] + start_button[BTN_HEIGHT]:
             current_screen = "room"
             game = True
-        if x > 220 and x < 420 and y > 75 and y < 125:
+        if x > instructions_button[BTN_X] \
+                and x < instructions_button[BTN_X] + instructions_button[BTN_WIDTH] \
+                and y > instructions_button[BTN_Y] \
+                and y < instructions_button[BTN_Y] + instructions_button[BTN_HEIGHT]:
             current_screen = "instructions"
+
     if game is False:
         if current_screen == "pause screen1":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "room"
                     game = True
         if current_screen == "pause screen2":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "book"
                     game = True
         if current_screen == "pause screen3":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "locked box"
                     game = True
         if current_screen == "pause screen4":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "paper1"
                     game = True
         if current_screen == "pause screen5":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "paper2"
                     game = True
         if current_screen == "pause screen6":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "paper3"
                     game = True
         if current_screen == "pause screen7":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "paper4"
                     game = True
         if current_screen == "pause screen8":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "paper5"
                     game = True
         if current_screen == "pause screen9":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "left side"
                     game = True
         if current_screen == "pause screen10":
-            if x > 100 and x < 300 and y > 150 and y < 200:
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
                     current_screen = "main menu"
-            if x > 350 and x < 550 and y > 150 and y < 200:
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "right side"
                     game = True
 
@@ -250,8 +330,8 @@ def draw_mainmenu(x, y):
     arcade.draw_text("ESCAPE", x, y, arcade.color.RED_DEVIL, 50, 300, "center", "arial", True)
     arcade.draw_text("to the", x + 40, y - 35, arcade.color.BLACK, 25, 200, "center")
     arcade.draw_text("FUTURE", x + 25, y - 90, arcade.color.WHITE, 40, 250, "center", "arial", True)
-    arcade.draw_rectangle_filled(WIDTH / 2, 175, 200, 50, arcade.color.LIGHT_GRAY)
-    arcade.draw_rectangle_filled(WIDTH / 2, 100, 200, 50, arcade.color.LIGHT_GRAY)
+    arcade.draw_xywh_rectangle_filled(start_button[BTN_X], start_button[BTN_Y], start_button[BTN_WIDTH], start_button[BTN_HEIGHT], arcade.color.LIGHT_GRAY)
+    arcade.draw_xywh_rectangle_filled(instructions_button[BTN_X], instructions_button[BTN_Y], instructions_button[BTN_WIDTH], instructions_button[BTN_HEIGHT], arcade.color.LIGHT_GRAY)
     arcade.draw_text("PLAY GAME", 225, 165, arcade.color.BLACK, 25, 900)
     arcade.draw_text("INSTRUCTIONS", 225, 90, arcade.color.BLACK, 19, 900)
 
@@ -259,8 +339,8 @@ def draw_mainmenu(x, y):
 def draw_pausescreen():
     arcade.draw_rectangle_filled(WIDTH/2, HEIGHT/2, WIDTH, HEIGHT, arcade.color.BLACK)
     arcade.draw_text("QUIT GAME?", 77, HEIGHT / 2, arcade.color.WHITE, 50, 500, "center", "Arial", True)
-    arcade.draw_rectangle_filled(200, 175, 200, 50, arcade.color.WHITE)
-    arcade.draw_rectangle_filled(450, 175, 200, 50, arcade.color.WHITE)
+    arcade.draw_xywh_rectangle_filled(quit_button[BTN_X], quit_button[BTN_Y], quit_button[BTN_WIDTH], quit_button[BTN_HEIGHT], arcade.color.WHITE)
+    arcade.draw_xywh_rectangle_filled(resume_button[BTN_X], resume_button[BTN_Y], resume_button[BTN_WIDTH], resume_button[BTN_HEIGHT], arcade.color.WHITE)
     arcade.draw_text("QUIT", 155, 165, arcade.color.BLACK, 25, 300)
     arcade.draw_text("RESUME", 385, 165, arcade.color.BLACK, 25, 500)
 
