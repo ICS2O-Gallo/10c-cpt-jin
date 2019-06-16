@@ -40,22 +40,23 @@ def on_draw():
         draw_mainmenu(180, 325)
     elif current_screen == "instructions":
         draw_instruction()
-    elif current_screen == "pause screen1":
-        draw_pausescreen1()
-        game = False
-    elif current_screen == "pause screen2":
-        draw_pausescreen1()
+    elif current_screen == "pause screen1" or current_screen == "pause screen2" or current_screen == "pause screen3" or current_screen == "pause screen4" or current_screen == "pause screen5" or current_screen == "pause screen5" or current_screen == "pause screen6" or current_screen == "pause screen7" or current_screen == "pause screen8" or current_screen == "pause screen9" or current_screen == "pause screen10":
+        draw_pausescreen()
         game = False
     elif current_screen == "room":
         draw_room()
         game = True
+    elif current_screen == "left side":
+        draw_leftside()
+    elif current_screen == "right side":
+        draw_rightside()
     if current_screen == "book":
         draw_book()
     if game is True:
         draw_sidebar(430)
     if current_screen == "locked box":
         draw_lockedbox()
-    if current_screen == "paper":
+    if current_screen == "paper1" or current_screen == "paper2" or current_screen == "paper3" or current_screen == "paper4" or current_screen == "paper5":
         draw_paper()
 
 
@@ -64,12 +65,36 @@ def on_key_press(key, modifiers):
     if current_screen == "instructions":
         if key == arcade.key.ESCAPE:
             current_screen = "main menu"
-    if game == True and current_screen == "room":
+    if game is True and current_screen == "room":
         if key == arcade.key.ESCAPE:
             current_screen = "pause screen1"
-    if game == True and current_screen == "book":
+    if game is True and current_screen == "book":
         if key == arcade.key.ESCAPE:
             current_screen = "pause screen2"
+    if game is True and current_screen == "locked box":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen3"
+    if game is True and current_screen == "paper1":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen4"
+    if game is True and current_screen == "paper2":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen5"
+    if game is True and current_screen == "paper3":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen6"
+    if game is True and current_screen == "paper4":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen7"
+    if game is True and current_screen == "paper5":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen8"
+    if game is True and current_screen == "left side":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen9"
+    if game is True and current_screen == "right side":
+        if key == arcade.key.ESCAPE:
+            current_screen = "pause screen10"
 
 
 def on_key_release(key, modifiers):
@@ -86,36 +111,129 @@ def on_mouse_press(x, y, button, modifiers):
             game = True
         if x > 220 and x < 420 and y > 75 and y < 125:
             current_screen = "instructions"
-    if current_screen == "pause screen1":
-        if x > 100 and x < 300 and y > 150 and y < 200:
-            current_screen = "main menu"
-        if x > 350 and x < 550 and y > 150 and y < 200:
-            current_screen = "room"
-    if current_screen == "pause screen2":
-        if x > 100 and x < 300 and y > 150 and y < 200:
-            current_screen = "main menu"
-        if x > 350 and x < 550 and y > 150 and y < 200:
-            current_screen = "book"
-            game = True
-    if current_screen == "room":
-        if x > 75 and x < 125 and y > 200 and y < 220:
-            current_screen = "book"
-            game = True
-        if x > 380 and x < 440 and y > 170 and y < 200:
-            current_screen = "locked box"
-            game = True
-    if current_screen == "book":
-        if x > 12 and x < 50 and y > 12 and y < 59:
-            inventory.append("slip")
-            paper_in_inventory = True
-        if x > 20 and x < 120 and y > 380 and y < 450:
-            current_screen = "room"
-    if current_screen == "locked box":
-        if x > 20 and x < 120 and y > 380 and y < 450:
-            current_screen = "room"
-    if game == True and paper_in_inventory == True:
-        if x > 545 and x < 605 and y > 395 and y < 465:
-            current_screen = "paper"
+    if game is False:
+        if current_screen == "pause screen1":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "room"
+                    game = True
+        if current_screen == "pause screen2":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "book"
+                    game = True
+        if current_screen == "pause screen3":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "locked box"
+                    game = True
+        if current_screen == "pause screen4":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "paper1"
+                    game = True
+        if current_screen == "pause screen5":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "paper2"
+                    game = True
+        if current_screen == "pause screen6":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "paper3"
+                    game = True
+        if current_screen == "pause screen7":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "paper4"
+                    game = True
+        if current_screen == "pause screen8":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "paper5"
+                    game = True
+        if current_screen == "pause screen9":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "left side"
+                    game = True
+        if current_screen == "pause screen10":
+            if x > 100 and x < 300 and y > 150 and y < 200:
+                    current_screen = "main menu"
+            if x > 350 and x < 550 and y > 150 and y < 200:
+                    current_screen = "right side"
+                    game = True
+
+    elif game is True:
+        if current_screen == "room":
+            if x > 75 and x < 125 and y > 200 and y < 220:
+                current_screen = "book"
+                game = True
+            if x > 380 and x < 440 and y > 170 and y < 200:
+                current_screen = "locked box"
+                game = True
+            if x > 3 and x < 93 and y > 2 and y < 75:
+                current_screen = "left side"
+                game = True
+            if x > 405 and x < WIDTH - 145 and y > 2 and y < 75:
+                current_screen = "right side"
+                game = True
+        if current_screen == "left side":
+            if x > 405 and x < WIDTH - 145 and y > 2 and y < 75:
+                current_screen = "room"
+                game = True
+        if current_screen == "right side":
+            if x > 3 and x < 93 and y > 2 and y < 75:
+                current_screen = "room"
+                game = True
+        if current_screen == "book":
+            if x > 12 and x < 50 and y > 12 and y < 59:
+                inventory.append("slip")
+                paper_in_inventory = True
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "room"
+        if current_screen == "locked box":
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "room"
+        if game is True and paper_in_inventory == True and current_screen == "room":
+            if x > 545 and x < 605 and y > 395 and y < 465:
+                current_screen = "paper1"
+        if game is True and paper_in_inventory == True and current_screen == "book":
+            if x > 545 and x < 605 and y > 395 and y < 465:
+                current_screen = "paper2"
+        if game is True and paper_in_inventory == True and current_screen == "locked box":
+            if x > 545 and x < 605 and y > 395 and y < 465:
+                current_screen = "paper3"
+        if game is True and paper_in_inventory == True and current_screen == "left side":
+            if x > 545 and x < 605 and y > 395 and y < 465:
+                current_screen = "paper4"
+        if game is True and paper_in_inventory == True and current_screen == "right side":
+            if x > 545 and x < 605 and y > 395 and y < 465:
+                current_screen = "paper5"
+        if current_screen == "paper1":
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "room"
+        if current_screen == "paper2":
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "book"
+        if current_screen == "paper3":
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "locked box"
+        if current_screen == "paper4":
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "left side"
+        if current_screen == "paper5":
+            if x > 20 and x < 120 and y > 380 and y < 450:
+                current_screen = "right side"
 
 
 def draw_instruction():
@@ -138,7 +256,7 @@ def draw_mainmenu(x, y):
     arcade.draw_text("INSTRUCTIONS", 225, 90, arcade.color.BLACK, 19, 900)
 
 
-def draw_pausescreen1():
+def draw_pausescreen():
     arcade.draw_rectangle_filled(WIDTH/2, HEIGHT/2, WIDTH, HEIGHT, arcade.color.BLACK)
     arcade.draw_text("QUIT GAME?", 77, HEIGHT / 2, arcade.color.WHITE, 50, 500, "center", "Arial", True)
     arcade.draw_rectangle_filled(200, 175, 200, 50, arcade.color.WHITE)
@@ -146,14 +264,6 @@ def draw_pausescreen1():
     arcade.draw_text("QUIT", 155, 165, arcade.color.BLACK, 25, 300)
     arcade.draw_text("RESUME", 385, 165, arcade.color.BLACK, 25, 500)
 
-
-def draw_pausescreen2():
-    arcade.draw_rectangle_filled(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, arcade.color.BLACK)
-    arcade.draw_text("QUIT GAME?", 77, HEIGHT / 2, arcade.color.WHITE, 50, 500, "center", "Arial", True)
-    arcade.draw_rectangle_filled(200, 175, 200, 50, arcade.color.WHITE)
-    arcade.draw_rectangle_filled(450, 175, 200, 50, arcade.color.WHITE)
-    arcade.draw_text("QUIT", 155, 165, arcade.color.BLACK, 25, 300)
-    arcade.draw_text("RESUME", 385, 165, arcade.color.BLACK, 25, 500)
 
 def draw_room():
     arcade.set_background_color(arcade.color.DARK_GRAY)
@@ -173,6 +283,20 @@ def draw_room():
     arcade.draw_rectangle_filled(410, 185, 60, 30, arcade.color.MAROON)
     arcade.draw_line(380, 185, 440, 185, arcade.color.BLACK)
     arcade.draw_rectangle_filled(410, 185, 5, 10, arcade.color.GOLD)
+    draw_arrow_left(58, 40, arcade.color.RED)
+    draw_arrow_right(440, 40, arcade.color.RED)
+
+
+def draw_leftside():
+    arcade.set_background_color(arcade.color.DARK_GRAY)
+    arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
+    draw_arrow_right(440, 40, arcade.color.RED)
+
+
+def draw_rightside():
+    arcade.set_background_color(arcade.color.DARK_GRAY)
+    arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
+    draw_arrow_left(58, 40, arcade.color.RED)
 
 
 def draw_book():
@@ -180,7 +304,7 @@ def draw_book():
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT - 50, arcade.color.DARK_BROWN)
     arcade.draw_rectangle_filled(250, 59, 400, 67, arcade.color.RED)
     arcade.draw_line(50, 59, 12, 40, arcade.color.WHITE, 2)
-    draw_arrow(arcade.color.RED)
+    draw_arrow_left(70, 435, arcade.color.RED)
 
 
 def draw_lockedbox():
@@ -188,7 +312,7 @@ def draw_lockedbox():
     arcade.draw_rectangle_filled(WIDTH/2 - 70, 170, 360, 180, arcade.color.MAROON)
     arcade.draw_line(70, 170, 430, 170, arcade.color.BLACK)
     arcade.draw_rectangle_filled(WIDTH/2 - 70, 170, 30, 60, arcade.color.GOLD)
-    draw_arrow(arcade.color.RED)
+    draw_arrow_left(70, 435, arcade.color.RED)
 
 
 def draw_sidebar(whitesquare_y):
@@ -205,12 +329,20 @@ def draw_sidebar(whitesquare_y):
 def draw_paper():
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT, arcade.color.WHITE)
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, 267, 373, arcade.color.BEIGE)
-    draw_arrow(arcade.color.BLACK)
+    arcade.draw_text("CRYPTIC TEXT", 150, 150, arcade.color.BLACK, 25, 1000, "left", 'arial', False, False, "left",
+                     "baseline", 50)
+    draw_arrow_left(70, 435, arcade.color.BLACK)
 
 
-def draw_arrow(color):
-    arcade.draw_rectangle_filled(70, 435, 70, 30, color)
-    arcade.draw_triangle_filled(15, 435, 60, 470, 60, 400, color)
+def draw_arrow_left(x, y, color):
+    arcade.draw_rectangle_filled(x, y, 70, 30, color)
+    arcade.draw_triangle_filled(x - 55, y, x - 10, y + 35, x - 10, y - 35, color)
+
+
+def draw_arrow_right(x, y, color):
+    arcade.draw_rectangle_filled(x, y, 70, 30, color)
+    arcade.draw_triangle_filled(x + 55, y, x + 10, y + 35, x + 10, y - 35, color)
+
 
 if __name__ == '__main__':
     setup()
