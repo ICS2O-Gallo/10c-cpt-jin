@@ -16,6 +16,7 @@ instructions_button = [220, 75, 200, 50]
 quit_button = [100, 150, 200, 50]
 resume_button = [350, 150, 200, 50]
 fuse_button = [100, 25, 200, 10]
+unlock_button = [100, 25, 200, 10]
 
 #GAME VARIABLES
 current_screen = "main menu"
@@ -28,10 +29,10 @@ code_number2 = 1
 code_number3 = 2
 code_number4 = 3
 
-player_input1 = 4
-player_input2 = 1
-player_input3 = 2
-player_input4 = 3
+player_input1 = 0
+player_input2 = 0
+player_input3 = 0
+player_input4 = 0
 
 #ITEMS
 paper_in_inventory = False
@@ -60,10 +61,10 @@ def update(delta_time):
         screwdriver_in_inventory, bluepaper_in_inventory, key_in_inventory
     #RESETS EVERYTIME GAME IS QUIT
     if current_screen == "main menu":
-        player_input1 = 4
-        player_input2 = 1
-        player_input3 = 2
-        player_input4 = 3
+        player_input1 = 0
+        player_input2 = 0
+        player_input3 = 0
+        player_input4 = 0
         paper_in_inventory = False
         pictureframe_in_inventory = False
         screwdriver_in_inventory = False
@@ -80,15 +81,18 @@ def on_draw():
         draw_mainmenu(180, 325)
     elif current_screen == "instructions":
         draw_instruction()
-    elif current_screen == "pause screen1" or current_screen == "pause screen2" or current_screen == "pause screen3" \
-            or current_screen == "pause screen4" or current_screen == "pause screen5" or current_screen == "pause screen5" \
-            or current_screen == "pause screen6" or current_screen == "pause screen7" or current_screen == "pause screen8" \
+    #ALL THE DIFFERERNT PAUSE SCREENS FOR CERTAIN SCREENS
+    elif current_screen == "pause screen1" or current_screen == "pause screen2" or current_screen == "pause screen3"\
+            or current_screen == "pause screen4" or current_screen == "pause screen5" or current_screen == "pause screen5"\
+            or current_screen == "pause screen6" or current_screen == "pause screen7" or current_screen == "pause screen8"\
             or current_screen == "pause screen9" or current_screen == "pause screen10" or current_screen == "pause screen11"\
             or current_screen == "pause screen12" or current_screen == "pause screen13" or current_screen == "pause screen14"\
             or current_screen == "pause screen15" or current_screen == "pause screen16" or current_screen == "pause screen17"\
             or current_screen == "pause screen18" or current_screen == "pause screen19" or current_screen == "pause screen20"\
             or current_screen == "pause screen21" or current_screen == "pause screen22" or current_screen == "pause screen23"\
-            or current_screen == "pause screen24" or current_screen == "pause screen25":
+            or current_screen == "pause screen24" or current_screen == "pause screen25" or current_screen == "pause screen26"\
+            or current_screen == "pause screen27" or current_screen == "pause screen28" or current_screen == "pause screen29"\
+            or current_screen == "pause screen30":
         draw_pausescreen()
         game = False
     elif current_screen == "room":
@@ -104,31 +108,45 @@ def on_draw():
         draw_sidebar(430)
     if current_screen == "locked box":
         draw_lockedbox()
+    #DIFFERENT PAPER SCREENS
     if current_screen == "paper1" \
             or current_screen == "paper2"\
             or current_screen == "paper3"\
             or current_screen == "paper4"\
             or current_screen == "paper5":
         draw_paper()
+    #DIFFERENT PICTURE FRAME SCREENS
     if current_screen == "pictureframe1" \
             or current_screen == "pictureframe2"\
             or current_screen == "pictureframe3"\
             or current_screen == "pictureframe4"\
             or current_screen == "pictureframe5":
         draw_pictureframe()
+    #DIFFERENT SCREW DRIVER SCREENS
     if current_screen == "screwdriver1" \
             or current_screen == "screwdriver2" \
             or current_screen == "screwdriver3" \
             or current_screen == "screwdriver4" \
             or current_screen == "screwdriver5":
         draw_screwdriver()
+    #DIFFERENT BLUE PAPER SCREENS
     if current_screen == "bluepaper1" \
             or current_screen == "bluepaper2" \
             or current_screen == "bluepaper3" \
             or current_screen == "bluepaper4" \
             or current_screen == "bluepaper5":
         draw_bluepaper()
+    #DIFFERENT KEY SCREENS
+    if current_screen == "key1" \
+            or current_screen == "key2" \
+            or current_screen == "key3" \
+            or current_screen == "key4" \
+            or current_screen == "key5":
+        draw_key(100)
 
+    #VICTORY SCREEN
+    if current_screen == "victory":
+        draw_victory()
 
 def on_key_press(key, modifiers):
     #MULTIPLE PAUSESCREENS
@@ -137,6 +155,7 @@ def on_key_press(key, modifiers):
         if key == arcade.key.ESCAPE:
             current_screen = "main menu"
     if game is True:
+        #ACCESS TO ALL PAUSE SCREENS
         if current_screen == "room":
             if key == arcade.key.ESCAPE:
                 current_screen = "pause screen1"
@@ -170,7 +189,7 @@ def on_key_press(key, modifiers):
         if current_screen == "pictureframe1":
             if key == arcade.key.ESCAPE:
                 current_screen = "pause screen11"
-        if current_screen == "pictureframe":
+        if current_screen == "pictureframe2":
             if key == arcade.key.ESCAPE:
                 current_screen = "pause screen12"
         if current_screen == "pictureframe3":
@@ -212,6 +231,25 @@ def on_key_press(key, modifiers):
         if current_screen == "bluepaper5":
             if key == arcade.key.ESCAPE:
                 current_screen = "pause screen25"
+        if current_screen == "key1":
+            if key == arcade.key.ESCAPE:
+                current_screen = "pause screen26"
+        if current_screen == "key2":
+            if key == arcade.key.ESCAPE:
+                current_screen = "pause screen27"
+        if current_screen == "key3":
+            if key == arcade.key.ESCAPE:
+                current_screen = "pause screen28"
+        if current_screen == "key4":
+            if key == arcade.key.ESCAPE:
+                current_screen = "pause screen29"
+        if current_screen == "key5":
+            if key == arcade.key.ESCAPE:
+                current_screen = "pause screen30"
+
+    if current_screen == "victory":
+        if key == arcade.key.ESCAPE:
+            current_screen = "main menu"
 
 
 def on_key_release(key, modifiers):
@@ -223,6 +261,7 @@ def on_mouse_press(x, y, button, modifiers):
         bluepaper_in_inventory, key_in_inventory, player_input1, player_input2, player_input3, player_input4
 
     if game is False:
+        #BUTTON PRESSES FOR ALL PAUSE SCREENS
         if current_screen == "main menu":
             if x > start_button[BTN_X] \
                     and x < start_button[BTN_X] + start_button[BTN_WIDTH] \
@@ -535,8 +574,69 @@ def on_mouse_press(x, y, button, modifiers):
                     and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
                     current_screen = "bluepaper5"
                     game = True
+        if current_screen == "pause screen26":
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
+                    current_screen = "main menu"
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
+                    current_screen = "key1"
+                    game = True
+        if current_screen == "pause screen27":
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
+                    current_screen = "main menu"
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
+                    current_screen = "key2"
+                    game = True
+        if current_screen == "pause screen28":
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
+                    current_screen = "main menu"
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
+                    current_screen = "key3"
+                    game = True
+        if current_screen == "pause screen29":
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
+                    current_screen = "main menu"
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
+                    current_screen = "key4"
+                    game = True
+        if current_screen == "pause screen30":
+            if x > quit_button[BTN_X] \
+                    and x < quit_button[BTN_X] + quit_button[BTN_WIDTH] \
+                    and y > quit_button[BTN_Y] \
+                    and y < quit_button[BTN_Y] + quit_button[BTN_HEIGHT]:
+                    current_screen = "main menu"
+            if x > resume_button[BTN_X] \
+                    and x < resume_button[BTN_X] + resume_button[BTN_WIDTH] \
+                    and y > resume_button[BTN_Y] \
+                    and y < resume_button[BTN_Y] + resume_button[BTN_HEIGHT]:
+                    current_screen = "key5"
+                    game = True
 
     elif game is True:
+        #THINGS TO CLICK IN ROOM
         if current_screen == "room":
             if x > 75 and x < 125 and y > 200 and y < 220:
                 current_screen = "book"
@@ -550,6 +650,7 @@ def on_mouse_press(x, y, button, modifiers):
             if x > 405 and x < WIDTH - 145 and y > 2 and y < 75:
                 current_screen = "right side"
                 game = True
+        #THINGS TO CLICK IN LEFT SIDE
         if current_screen == "left side":
             if x > 405 and x < WIDTH - 145 and y > 2 and y < 75:
                 current_screen = "room"
@@ -557,6 +658,7 @@ def on_mouse_press(x, y, button, modifiers):
             if bluepaper_in_inventory is False:
                 if x > 90 and x < 130 and y > 170 and y < 230:
                     pictureframe_in_inventory = True
+        #THINGS TO CLICK IN RIGHT SIDE
         if current_screen == "right side":
             if x > 3 and x < 93 and y > 2 and y < 75:
                 current_screen = "room"
@@ -564,11 +666,13 @@ def on_mouse_press(x, y, button, modifiers):
             if bluepaper_in_inventory is False:
                 if x > 125 and x < 210 and y > 180 and y < 190:
                     screwdriver_in_inventory = True
+        #THINGS TO CLICK IN BOOK
         if current_screen == "book":
             if x > 12 and x < 50 and y > 12 and y < 59:
                 paper_in_inventory = True
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "room"
+        #THINGS TO CLICK IN LOCKED BOX
         if current_screen == "locked box":
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "room"
@@ -611,75 +715,78 @@ def on_mouse_press(x, y, button, modifiers):
                     key_in_inventory = True
 
         if paper_in_inventory is True:
-            if current_screen == "room" or current_screen == "pictureframe1" or current_screen == "screwdriver1" or current_screen == "bluepaper1":
+            #ACCESS TO PAPER SCREENS FROM DIFFERENT SCREENS
+            if current_screen == "room" or current_screen == "pictureframe1" or current_screen == "screwdriver1" or current_screen == "bluepaper1" or current_screen == "key1":
                 if x > 545 and x < 605 and y > 395 and y < 465:
                     current_screen = "paper1"
-            if current_screen == "book" or current_screen == "pictureframe2" or current_screen == "screwdriver2" or current_screen == "bluepaper2":
+            if current_screen == "book" or current_screen == "pictureframe2" or current_screen == "screwdriver2" or current_screen == "bluepaper2" or current_screen == "key2":
                 if x > 545 and x < 605 and y > 395 and y < 465:
                     current_screen = "paper2"
-            if current_screen == "locked box" or current_screen == "pictureframe3" or current_screen == "screwdriver3" or current_screen == "bluepaper3":
+            if current_screen == "locked box" or current_screen == "pictureframe3" or current_screen == "screwdriver3" or current_screen == "bluepaper3" or current_screen == "key3":
                 if x > 545 and x < 605 and y > 395 and y < 465:
                     current_screen = "paper3"
-            if current_screen == "left side" or current_screen == "pictureframe4" or current_screen == "screwdriver4" or current_screen == "bluepaper4":
+            if current_screen == "left side" or current_screen == "pictureframe4" or current_screen == "screwdriver4" or current_screen == "bluepaper4" or current_screen == "key4":
                 if x > 545 and x < 605 and y > 395 and y < 465:
                     current_screen = "paper4"
-            if current_screen == "right side" or current_screen == "pictureframe5" or current_screen == "screwdriver5" or current_screen == "bluepaper5":
+            if current_screen == "right side" or current_screen == "pictureframe5" or current_screen == "screwdriver5" or current_screen == "bluepaper5" or current_screen == "key5":
                 if x > 545 and x < 605 and y > 395 and y < 465:
                     current_screen = "paper5"
 
-
         #CODE FOR BACKING OUT OF ITEM SCREENS
-        if current_screen == "paper1" or current_screen == "pictureframe1" or current_screen == "screwdriver1" or current_screen == "bluepaper1":
+        if current_screen == "paper1" or current_screen == "pictureframe1" or current_screen == "screwdriver1" or current_screen == "bluepaper1" or current_screen == "key1":
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "room"
-        if current_screen == "paper2" or current_screen == "pictureframe2" or current_screen == "screwdriver2" or current_screen == "bluepaper2":
+        if current_screen == "paper2" or current_screen == "pictureframe2" or current_screen == "screwdriver2" or current_screen == "bluepaper2" or current_screen == "key2":
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "book"
-        if current_screen == "paper3" or current_screen == "pictureframe3" or current_screen == "screwdriver3" or current_screen == "bluepaper3":
+        if current_screen == "paper3" or current_screen == "pictureframe3" or current_screen == "screwdriver3" or current_screen == "bluepaper3" or current_screen == "key3":
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "locked box"
-        if current_screen == "paper4" or current_screen == "pictureframe4" or current_screen == "screwdriver4" or current_screen == "bluepaper4":
+        if current_screen == "paper4" or current_screen == "pictureframe4" or current_screen == "screwdriver4" or current_screen == "bluepaper4" or current_screen == "key4":
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "left side"
-        if current_screen == "paper5" or current_screen == "pictureframe5" or current_screen == "screwdriver5" or current_screen == "bluepaper5":
+        if current_screen == "paper5" or current_screen == "pictureframe5" or current_screen == "screwdriver5" or current_screen == "bluepaper5" or current_screen == "key5":
             if x > 20 and x < 120 and y > 380 and y < 450:
                 current_screen = "right side"
 
         if pictureframe_in_inventory is True:
-            if current_screen == "room" or current_screen == "paper1" or current_screen == "screwdriver1":
+            # ACCESS TO PICTURE FRAME SCREENS FROM DIFFERENT SCREENS
+            if current_screen == "room" or current_screen == "paper1" or current_screen == "screwdriver1" or current_screen == "key1":
                 if x > 545 and x < 605 and y > 295 and y < 375:
                     current_screen = "pictureframe1"
-            if current_screen == "book" or current_screen == "paper2" or current_screen == "screwdriver2":
+            if current_screen == "book" or current_screen == "paper2" or current_screen == "screwdriver2" or current_screen == "key2":
                 if x > 545 and x < 605 and y > 295 and y < 375:
                     current_screen = "pictureframe2"
-            if current_screen == "locked box" or current_screen == "paper3" or current_screen == "screwdriver3":
+            if current_screen == "locked box" or current_screen == "paper3" or current_screen == "screwdriver3" or current_screen == "key3":
                 if x > 545 and x < 605 and y > 295 and y < 375:
                     current_screen = "pictureframe3"
-            if current_screen == "left side" or current_screen == "paper4" or current_screen == "screwdriver4":
+            if current_screen == "left side" or current_screen == "paper4" or current_screen == "screwdriver4" or current_screen == "key4":
                 if x > 545 and x < 605 and y > 295 and y < 375:
                     current_screen = "pictureframe4"
-            if current_screen == "right side" or current_screen == "paper5" or current_screen == "screwdriver5":
+            if current_screen == "right side" or current_screen == "paper5" or current_screen == "screwdriver5" or current_screen == "key5":
                 if x > 545 and x < 605 and y > 295 and y < 375:
                     current_screen = "pictureframe5"
 
         if screwdriver_in_inventory is True:
-            if current_screen == "room" or current_screen == "paper1" or current_screen == "pictureframe1":
+            # ACCESS TO SCREWDRIVER SCREENS FROM DIFFERENT SCREENS
+            if current_screen == "room" or current_screen == "paper1" or current_screen == "pictureframe1" or current_screen == "key1":
                 if x > 545 and x < 605 and y > 200 and y < 280:
                     current_screen = "screwdriver1"
-            if current_screen == "book" or current_screen == "paper2" or current_screen == "pictureframe2":
+            if current_screen == "book" or current_screen == "paper2" or current_screen == "pictureframe2" or current_screen == "key2":
                 if x > 545 and x < 605 and y > 200 and y < 280:
                     current_screen = "screwdriver2"
-            if current_screen == "locked box" or current_screen == "paper3" or current_screen == "pictureframe3":
+            if current_screen == "locked box" or current_screen == "paper3" or current_screen == "pictureframe3" or current_screen == "key3":
                 if x > 545 and x < 605 and y > 200 and y < 280:
                     current_screen = "screwdriver3"
-            if current_screen == "left side" or current_screen == "paper4" or current_screen == "pictureframe4":
+            if current_screen == "left side" or current_screen == "paper4" or current_screen == "pictureframe4" or current_screen == "key4":
                 if x > 545 and x < 605 and y > 200 and y < 280:
                     current_screen = "screwdriver4"
-            if current_screen == "right side" or current_screen == "paper5" or current_screen == "pictureframe5":
+            if current_screen == "right side" or current_screen == "paper5" or current_screen == "pictureframe5" or current_screen == "key5":
                 if x > 545 and x < 605 and y > 200 and y < 280:
                     current_screen = "screwdriver5"
 
         if pictureframe_in_inventory is True and screwdriver_in_inventory is True:
+            #GETS RID OF PICTURE FRAME AND SCREWDRIVER AND GET BLUE PAPER
             if current_screen == "pictureframe1" \
                 or current_screen == "pictureframe2" \
                 or current_screen == "pictureframe3" \
@@ -696,25 +803,55 @@ def on_mouse_press(x, y, button, modifiers):
                     bluepaper_in_inventory = True
 
     if bluepaper_in_inventory is True:
-        if current_screen == "room" or current_screen == "paper1":
+        # ACCESS TO BLUE PAPER SCREENS FROM DIFFERENT SCREENS
+        if current_screen == "room" or current_screen == "paper1" or current_screen == "key1":
             if x > 545 and x < 605 and y > 295 and y < 375:
                 current_screen = "bluepaper1"
-        if current_screen == "book" or current_screen == "paper2":
+        if current_screen == "book" or current_screen == "paper2" or current_screen == "key2":
             if x > 545 and x < 605 and y > 295 and y < 375:
-                    current_screen = "bluepaper2"
-        if current_screen == "locked box" or current_screen == "paper3":
+                current_screen = "bluepaper2"
+        if current_screen == "locked box" or current_screen == "paper3" or current_screen == "key3":
             if x > 545 and x < 605 and y > 295 and y < 375:
-                    current_screen = "bluepaper3"
-        if current_screen == "left side" or current_screen == "paper4":
+                current_screen = "bluepaper3"
+        if current_screen == "left side" or current_screen == "paper4" or current_screen == "key4":
             if x > 545 and x < 605 and y > 295 and y < 375:
-                    current_screen = "bluepaper4"
-        if current_screen == "right side" or current_screen == "paper5":
+                current_screen = "bluepaper4"
+        if current_screen == "right side" or current_screen == "paper5" or current_screen == "key5":
             if x > 545 and x < 605 and y > 295 and y < 375:
-                    current_screen = "bluepaper5"
+                current_screen = "bluepaper5"
 
+    if key_in_inventory is True:
+        # ACCESS TO KEY SCREENS FROM DIFFERENT SCREENS
+        if current_screen == "room" or current_screen == "paper1" or current_screen == "pictureframe1" or current_screen == "screwdriver1" or current_screen == "bluepaper1":
+            if x > 545 and x < 605 and y > 105 and y < 185:
+                current_screen = "key1"
+        if current_screen == "book" or current_screen == "paper2" or current_screen == "pictureframe2" or current_screen == "screwdriver2" or current_screen == "bluepaper2":
+            if x > 545 and x < 605 and y > 105 and y < 185:
+                current_screen = "key2"
+        if current_screen == "locked box" or current_screen == "paper3" or current_screen == "pictureframe3" or current_screen == "screwdriver3" or current_screen == "bluepaper3":
+            if x > 545 and x < 605 and y > 105 and y < 185:
+                current_screen = "key3"
+        if current_screen == "left side" or current_screen == "paper4" or current_screen == "pictureframe4" or current_screen == "screwdriver4" or current_screen == "bluepaper4":
+            if x > 545 and x < 605 and y > 105 and y < 185:
+                current_screen = "key4"
+        if current_screen == "right side" or current_screen == "paper5" or current_screen == "pictureframe5" or current_screen == "screwdriver5" or current_screen == "bluepaper5":
+            if x > 545 and x < 605 and y > 105 and y < 185:
+                current_screen = "key5"
+
+        #BUTTON TO UNLOCK DOOR
+
+        if current_screen == "key1" \
+            or current_screen == "key2" \
+               or current_screen == "key3" \
+               or current_screen == "key4" \
+               or current_screen == "key5":
+                if x > unlock_button[BTN_X] and x < 400 and y > unlock_button[BTN_Y] and y < 60:
+                    current_screen = "victory"
+                    game = False
 
 
 def draw_instruction():
+    #DRAW INSTRUCTION SCREEN
     arcade.set_background_color(arcade.color.BLACK)
     arcade.draw_text("INSTRUCTIONS", 0, 375, arcade.color.WHITE, 50, WIDTH, "center", "Calibri", True, False)
     arcade.draw_line(40, 360, 600, 360, arcade.color.WHITE, 10)
@@ -722,7 +859,10 @@ def draw_instruction():
     arcade.draw_text("You will be clicking on different things and trying to use clues to solve puzzles", 60, 290, arcade.color.WHITE, font_size=12 )
     arcade.draw_text("You will only be using your mouse through the entirety of this game", 60, 260, arcade.color.WHITE, font_size=12)
     arcade.draw_text("You can fuse clues together and you can click on them to get more information on it", 60, 230, arcade.color.WHITE, font_size=12)
+
+
 def draw_mainmenu(x, y):
+    #DRAW MAIN MENU
     arcade.set_background_color(arcade.color.GRAY)
     arcade.draw_text("ESCAPE", x, y, arcade.color.RED_DEVIL, 50, 300, "center", "arial", True)
     arcade.draw_text("to the", x + 40, y - 35, arcade.color.BLACK, 25, 200, "center")
@@ -734,6 +874,7 @@ def draw_mainmenu(x, y):
 
 
 def draw_pausescreen():
+    #DRAW PAUSE SCREEN
     arcade.draw_rectangle_filled(WIDTH/2, HEIGHT/2, WIDTH, HEIGHT, arcade.color.BLACK)
     arcade.draw_text("QUIT GAME?", 77, HEIGHT / 2, arcade.color.WHITE, 50, 500, "center", "Arial", True)
     arcade.draw_xywh_rectangle_filled(quit_button[BTN_X], quit_button[BTN_Y], quit_button[BTN_WIDTH], quit_button[BTN_HEIGHT], arcade.color.WHITE)
@@ -743,6 +884,7 @@ def draw_pausescreen():
 
 
 def draw_room():
+    #DRAW ROOM
     arcade.set_background_color(arcade.color.DARK_GRAY)
     arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
     arcade.draw_rectangle_filled(260, 155, 75, 150, arcade.color.BROWN)
@@ -765,6 +907,7 @@ def draw_room():
 
 
 def draw_leftside():
+    #DRAW LEFT SIDE
     arcade.set_background_color(arcade.color.DARK_GRAY)
     arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
     draw_arrow_right(440, 40, arcade.color.RED)
@@ -776,6 +919,7 @@ def draw_leftside():
 
 
 def draw_rightside():
+    #DRAW RIGHTSIDE
     arcade.set_background_color(arcade.color.DARK_GRAY)
     arcade.draw_rectangle_filled(WIDTH / 2, 40, WIDTH, 80, arcade.color.GRAY)
     draw_arrow_left(58, 40, arcade.color.RED)
@@ -786,6 +930,7 @@ def draw_rightside():
 
 
 def draw_book():
+    #DRAW BOOK
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT, arcade.color.LIGHT_BROWN)
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT - 50, arcade.color.DARK_BROWN)
     arcade.draw_rectangle_filled(250, 59, 400, 67, arcade.color.RED)
@@ -794,6 +939,7 @@ def draw_book():
 
 
 def draw_lockedbox():
+    #DRAW LOCKED BOX
     arcade.draw_rectangle_filled(WIDTH/2 - 70, 40, WIDTH - 145, 80, arcade.color.LIGHT_BROWN)
     arcade.draw_rectangle_filled(WIDTH/2 - 70, 170, 360, 180, arcade.color.MAROON)
     arcade.draw_line(70, 170, 430, 170, arcade.color.BLACK)
@@ -818,6 +964,7 @@ def draw_lockedbox():
 
 
 def draw_sidebar(whitesquare_y):
+    #DRAW SIDEBAR AND COVER UP ITEMS ALREADY TAKEN
     arcade.draw_rectangle_filled(570, HEIGHT / 2, 145, HEIGHT, arcade.color.BLACK)
     for _ in range(5):
         arcade.draw_rectangle_filled(570, whitesquare_y, 80, 80, arcade.color.WHITE)
@@ -852,6 +999,7 @@ def draw_sidebar(whitesquare_y):
 
 
 def draw_paper():
+    #DRAW PAPER
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, WIDTH - 145, HEIGHT, arcade.color.WHITE)
     arcade.draw_rectangle_filled(WIDTH/2 - 70, HEIGHT/2, 267, 373, arcade.color.BEIGE)
     arcade.draw_text("LOST", 200, 200, arcade.color.BLACK, 25, 500, "left", 'arial', False, False, "left",
@@ -860,6 +1008,7 @@ def draw_paper():
 
 
 def draw_pictureframe():
+    #DRAW PICTURE FRAME
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, WIDTH - 145, HEIGHT, arcade.color.WHITE)
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, 213, 320, arcade.color.BLACK)
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, 160, 267, arcade.color.LIGHT_CYAN)
@@ -870,6 +1019,7 @@ def draw_pictureframe():
 
 
 def draw_screwdriver():
+    #DRAW SCREWDRIVER
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, WIDTH - 145, HEIGHT, arcade.color.WHITE)
     arcade.draw_rectangle_filled(170, 170, 213, 53, arcade.color.BLACK, 45)
     arcade.draw_circle_filled(100, 99, 27, arcade.color.BLACK)
@@ -881,22 +1031,44 @@ def draw_screwdriver():
 
 
 def draw_bluepaper():
+    #DRAW SCREWDRIVER
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, WIDTH - 145, HEIGHT, arcade.color.WHITE)
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, 300, 300, arcade.color.LIGHT_BLUE)
     arcade.draw_text("O=1, L=4, T=3, S=2", 110, HEIGHT / 2, arcade.color.BLACK, 30)
     draw_arrow_left(70, 435, arcade.color.BLACK)
 
 
-def draw_key():
+def draw_key(x):
+    #DRAW KEY
     arcade.draw_rectangle_filled(WIDTH / 2 - 70, HEIGHT / 2, WIDTH - 145, HEIGHT, arcade.color.WHITE)
+    arcade.draw_circle_filled(x + 50, 150, 60, arcade.color.GOLD)
+    arcade.draw_circle_filled(x + 50, 150, 32, arcade.color.WHITE)
+    arcade.draw_rectangle_filled(x + 150, 250, 200, 32, arcade.color.GOLD, 45)
+    arcade.draw_rectangle_filled(x + 175, 230, 80, 32, arcade.color.GOLD, -45)
+    arcade.draw_rectangle_filled(x + 210, 270, 80, 32, arcade.color.GOLD, -45)
+    arcade.draw_xywh_rectangle_filled(unlock_button[BTN_X], unlock_button[BTN_Y],
+                                      unlock_button[BTN_X] + unlock_button[BTN_WIDTH],
+                                      unlock_button[BTN_Y] + unlock_button[BTN_HEIGHT], arcade.color.GRAY)
+    arcade.draw_text("UNLOCK DOOR", unlock_button[BTN_X] + 70, unlock_button[BTN_Y] + 5, arcade.color.BLACK, 20)
+    draw_arrow_left(70, 435, arcade.color.BLACK)
+
+
+def draw_victory():
+    #DRAW VICTORY SCREEN
+    arcade.set_background_color(arcade.color.BLACK)
+    arcade.draw_text("CONGRATULATIONS!", 50, HEIGHT / 2, arcade.color.WHITE, 50)
+    arcade.draw_text("YOU UNLOCKED THE DOOR WITH THE KEY AND ESCAPED!", 100, HEIGHT / 2 - 25, arcade.color.WHITE, 15)
+    arcade.draw_text("Press ESC to go back to the main menu", 200, HEIGHT/ 2 - 50, arcade.color.WHITE, 10)
 
 
 def draw_arrow_left(x, y, color):
+    #DRAW ARROW POINTING LEFT
     arcade.draw_rectangle_filled(x, y, 70, 30, color)
     arcade.draw_triangle_filled(x - 55, y, x - 10, y + 35, x - 10, y - 35, color)
 
 
 def draw_arrow_right(x, y, color):
+    #DRAW ARROW POINTING RIGHT
     arcade.draw_rectangle_filled(x, y, 70, 30, color)
     arcade.draw_triangle_filled(x + 55, y, x + 10, y + 35, x + 10, y - 35, color)
 
